@@ -17,7 +17,7 @@ function StatValue({ value, suffix, active }) {
     }
 
     let frame = 0;
-    const duration = 1200;
+    const duration = 1250;
     const start = performance.now();
 
     const tick = (now) => {
@@ -34,7 +34,7 @@ function StatValue({ value, suffix, active }) {
   return (
     <span className="font-display text-5xl font-extrabold tracking-tight text-tis-red sm:text-6xl lg:text-7xl">
       {display}
-      <span className="text-[0.72em]">{suffix}</span>
+      <span className="text-[0.7em]">{suffix}</span>
     </span>
   );
 }
@@ -44,23 +44,23 @@ function StatItem({ item, index }) {
   const inView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
-    <Reveal delay={index * 0.08} variant="clipUp">
+    <Reveal delay={index * 0.07} variant="clipUp">
       <article
         ref={ref}
-        className="group relative flex h-full flex-col border-t border-tis-ink/12 pt-7"
+        className="group flex h-full flex-col border-t border-tis-ink/12 pt-8"
       >
-        <div className="mb-6 overflow-hidden">
+        <StatValue value={item.value} suffix={item.suffix} active={inView} />
+        <p className="mt-3 max-w-[16ch] text-sm font-medium tracking-[0.14em] text-tis-muted uppercase md:text-base">
+          {item.label}
+        </p>
+        <div className="mt-6 overflow-hidden">
           <img
             src={item.image}
             alt={item.imageAlt}
             loading="lazy"
-            className="h-36 w-full object-cover transition duration-700 group-hover:scale-[1.04] md:h-44"
+            className="h-32 w-full object-cover transition duration-700 group-hover:scale-[1.04] md:h-40"
           />
         </div>
-        <StatValue value={item.value} suffix={item.suffix} active={inView} />
-        <p className="mt-3 max-w-[14ch] text-sm font-medium tracking-[0.14em] text-tis-muted uppercase md:text-[0.95rem]">
-          {item.label}
-        </p>
       </article>
     </Reveal>
   );
@@ -72,8 +72,8 @@ export default function CampusStats() {
       id={campusStats.id}
       className="relative overflow-hidden bg-tis-cream px-5 py-24 md:px-8 md:py-32"
     >
-      <div className="pointer-events-none absolute top-16 right-0 font-display text-[18vw] leading-none font-extrabold text-tis-red/[0.04] select-none">
-        TIS
+      <div className="pointer-events-none absolute top-10 right-0 font-display text-[16vw] leading-none font-extrabold text-tis-red/[0.045] select-none">
+        22
       </div>
       <div className="relative mx-auto max-w-7xl">
         <Reveal>
@@ -88,7 +88,7 @@ export default function CampusStats() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 xl:grid-cols-4 xl:gap-8">
+        <div className="mt-14 grid gap-10 sm:grid-cols-2 xl:grid-cols-5 xl:gap-6">
           {campusStats.items.map((item, index) => (
             <StatItem key={item.label} item={item} index={index} />
           ))}

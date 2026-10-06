@@ -24,6 +24,18 @@ export const navLinks = [
   { label: "Enquire", href: "#enquire" },
 ];
 
+/** Subtle chapter rail labels — maps to existing section IDs only. */
+export const chapters = [
+  { id: "about", number: "01", label: "About" },
+  { id: "why", number: "02", label: "Why Tulas" },
+  { id: "campus", number: "03", label: "Campus" },
+  { id: "sports", number: "04", label: "Sports" },
+  { id: "recognition", number: "05", label: "Recognition" },
+  { id: "voices", number: "06", label: "Voices" },
+  { id: "experience", number: "07", label: "Experience" },
+  { id: "enquire", number: "08", label: "Admissions" },
+];
+
 export const ctas = {
   apply: {
     label: "Apply Now",
@@ -136,6 +148,55 @@ export const campusStats = {
       label: "Student–teacher ratio",
       image: `${MEDIA}/ratio.6ca07c6a.png`,
       imageAlt: "Students with teachers at Tulas",
+    },
+    {
+      value: 12,
+      suffix: "+",
+      label: "Collaborations",
+      image: `${MEDIA}/ranking.157c5a68.png`,
+      imageAlt: "Tulas collaborations and recognition",
+    },
+  ],
+};
+
+/**
+ * Life at Tulas — categories use only existing verified copy/images from the site.
+ * Kept minimal; no invented descriptions.
+ */
+export const lifeAtTulas = {
+  id: "life",
+  title: "Life at Tulas",
+  subtitle: "Academics · Boarding · Sports · Arts & Culture · Leadership",
+  items: [
+    {
+      label: "Academics",
+      line: "CBSE curriculum focused on academic excellence and holistic development",
+      image: `${MEDIA}/madeForFuture.e96fe7c1.png`,
+      imageAlt: "Academic life at Tulas International School",
+    },
+    {
+      label: "Boarding",
+      line: "One of India’s top boarding and day schools in Dehradun",
+      image: `${MEDIA}/campus.e67b1a0a.png`,
+      imageAlt: "Boarding campus at Tulas",
+    },
+    {
+      label: "Sports",
+      line: "16+ sports curated to bring joy and discipline to your life.",
+      image: `${MEDIA}/sports.e695b690.png`,
+      imageAlt: "Sports at Tulas",
+    },
+    {
+      label: "Arts & Culture",
+      line: "Bringing out the best in every student—whether it’s academics, music, art, or drama.",
+      image: `${MEDIA}/dance.88843edb.webp`,
+      imageAlt: "Arts and culture at Tulas",
+    },
+    {
+      label: "Leadership",
+      line: "A community that encourages leadership, innovation, and lifelong learning",
+      image: `${MEDIA}/Image%203.21dc9e69.webp`,
+      imageAlt: "Leadership and community at Tulas",
     },
   ],
 };
@@ -281,7 +342,7 @@ export const experience = {
 export const enquire = {
   id: "enquire",
   title: "Enquire / Admissions",
-  headline: "Begin your Tulas journey",
+  headline: "Ready to do it?",
   body: "Share a few details and our admissions team will connect with you. Classes IV to XII.",
   classes: [
     "Class IV",

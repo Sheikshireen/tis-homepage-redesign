@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MessageCircle, Phone } from "lucide-react";
+import ChapterNav from "./components/layout/ChapterNav";
 import CustomCursor from "./components/layout/CustomCursor";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
@@ -9,6 +10,7 @@ import CampusStats from "./components/sections/CampusStats";
 import Enquire from "./components/sections/Enquire";
 import Experience from "./components/sections/Experience";
 import Hero from "./components/sections/Hero";
+import LifeAtTulas from "./components/sections/LifeAtTulas";
 import Recognition from "./components/sections/Recognition";
 import Sports from "./components/sections/Sports";
 import Voices from "./components/sections/Voices";
@@ -20,27 +22,26 @@ import { ctas } from "./data/content";
 function App() {
   const [enquireOpen, setEnquireOpen] = useState(false);
 
-  const openEnquire = () => {
-    setEnquireOpen(true);
-  };
+  const openEnquire = () => setEnquireOpen(true);
 
   const goToEnquire = () => {
     setEnquireOpen(false);
-    const section = document.getElementById("enquire");
-    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <>
       <ScrollProgress />
       <CustomCursor />
+      <ChapterNav />
       <Header onEnquire={openEnquire} />
       <main className="pb-20 md:pb-0">
-        <Hero onEnquire={openEnquire} />
+        <Hero />
         <About />
         <WhyTulas />
         <CampusStats />
         <Sports />
+        <LifeAtTulas />
         <Recognition />
         <Voices />
         <Experience />
@@ -60,7 +61,13 @@ function App() {
           >
             Apply
           </Button>
-          <Button type="button" variant="secondary" size="sm" className="flex-1" onClick={openEnquire}>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            className="flex-1"
+            onClick={openEnquire}
+          >
             Enquire
           </Button>
           <a
@@ -84,11 +91,7 @@ function App() {
         </div>
       </div>
 
-      <Modal
-        open={enquireOpen}
-        onClose={() => setEnquireOpen(false)}
-        title="Enquire Now"
-      >
+      <Modal open={enquireOpen} onClose={() => setEnquireOpen(false)} title="Enquire Now">
         <p className="text-sm leading-relaxed text-tis-muted">
           Jump to the admissions form, call the helpline, or continue to the Apply Now portal.
         </p>

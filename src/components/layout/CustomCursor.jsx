@@ -8,6 +8,7 @@ export default function CustomCursor() {
   const reduced = usePrefersReducedMotion();
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(false);
+  const [label, setLabel] = useState("");
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -34,6 +35,8 @@ export default function CustomCursor() {
         'a, button, [data-cursor="interactive"], input, select, textarea, label',
       );
       setActive(Boolean(interactive));
+      const nextLabel = interactive?.getAttribute?.("data-cursor-label") || "";
+      setLabel(nextLabel);
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -63,10 +66,18 @@ export default function CustomCursor() {
       }}
     >
       <div
-        className={`rounded-full border border-white/90 transition-[width,height,background-color] duration-200 ease-out ${
-          active ? "h-11 w-11 bg-white/10" : "h-3.5 w-3.5 bg-white"
+        className={`flex items-center justify-center rounded-full border border-white/90 transition-[width,height,background-color] duration-200 ease-out ${
+          active || label
+            ? "h-14 w-14 bg-white/10"
+            : "h-3.5 w-3.5 bg-white"
         }`}
-      />
+      >
+        {label ? (
+          <span className="text-[9px] font-semibold tracking-[0.18em] text-white uppercase">
+            {label}
+          </span>
+        ) : null}
+      </div>
     </motion.div>
   );
 }
