@@ -10,7 +10,10 @@ export default function LifeAtTulas() {
   const item = lifeAtTulas.items[active];
 
   return (
-    <section id={lifeAtTulas.id} className="bg-tis-ink px-5 py-28 text-white md:px-8 md:py-36">
+    <section
+      id={lifeAtTulas.id}
+      className="bg-tis-ink px-5 py-28 text-tis-on-dark md:px-8 md:py-36"
+    >
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <p className="text-sm font-semibold tracking-[0.2em] text-tis-teal uppercase">
@@ -19,7 +22,7 @@ export default function LifeAtTulas() {
           <h2 className="mt-4 max-w-xl font-display text-3xl font-bold tracking-tight md:text-5xl">
             One campus. Many ways to belong.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm tracking-[0.12em] text-white/55 uppercase md:text-base md:tracking-[0.16em]">
+          <p className="mt-4 max-w-2xl text-sm tracking-[0.12em] text-on-panel-muted uppercase md:text-base md:tracking-[0.16em]">
             {lifeAtTulas.subtitle}
           </p>
         </Reveal>
@@ -36,8 +39,8 @@ export default function LifeAtTulas() {
                 onClick={() => setActive(index)}
                 className={`shrink-0 rounded-full border px-4 py-2 text-sm font-medium transition ${
                   isActive
-                    ? "border-tis-teal bg-tis-teal text-tis-ink"
-                    : "border-white/20 text-white/75 hover:border-white/45 hover:text-white"
+                    ? "border-tis-teal bg-tis-teal text-tis-on-teal"
+                    : "border-tis-on-dark/25 text-on-panel-muted hover:border-tis-on-dark/50 hover:text-tis-on-dark"
                 }`}
               >
                 {entry.label}
@@ -48,7 +51,7 @@ export default function LifeAtTulas() {
 
         <Reveal delay={0.08} className="mt-8 md:mt-10">
           <div className="grid items-stretch gap-6 overflow-hidden lg:grid-cols-[1.15fr_0.85fr]">
-            <div className="relative min-h-[320px] overflow-hidden bg-white/5 md:min-h-[420px]">
+            <div className="relative min-h-[320px] overflow-hidden bg-panel-elevated md:min-h-[420px]">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={item.label}
@@ -71,10 +74,10 @@ export default function LifeAtTulas() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={reduced ? undefined : { opacity: 0, y: -10 }}
                 transition={{ duration: 0.35 }}
-                className="flex flex-col justify-end border border-white/10 p-6 md:p-8"
+                className="flex flex-col justify-end border border-tis-on-dark/15 bg-panel-elevated/40 p-6 md:p-8"
               >
                 <p className="text-xs tracking-[0.2em] text-tis-teal uppercase">{item.label}</p>
-                <p className="mt-4 font-accent text-2xl leading-snug text-white italic md:text-3xl">
+                <p className="mt-4 font-accent text-2xl leading-snug text-tis-on-dark italic md:text-3xl">
                   {item.line}
                 </p>
               </motion.div>

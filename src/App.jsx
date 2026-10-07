@@ -18,6 +18,7 @@ import WhyTulas from "./components/sections/WhyTulas";
 import Button from "./components/ui/Button";
 import Modal from "./components/ui/Modal";
 import { ActiveSectionProvider, useActiveSectionContext } from "./context/ActiveSectionContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { ctas } from "./data/content";
 import { scrollToSection } from "./utils/scrollToSection";
 
@@ -64,7 +65,7 @@ function AppShell() {
       </main>
       <Footer />
 
-      <div className="fixed right-0 bottom-0 left-0 z-40 border-t border-tis-ink/10 bg-tis-cream/95 px-3 py-2 shadow-[0_-8px_30px_-18px_rgba(28,28,28,0.45)] backdrop-blur md:hidden">
+      <div className="fixed right-0 bottom-0 left-0 z-40 border-t border-tis-border bg-tis-cream/95 px-3 py-2 shadow-[0_-8px_30px_-18px_rgba(17,20,23,0.4)] backdrop-blur md:hidden">
         <div className="mx-auto flex max-w-lg items-center gap-2">
           <Button
             as="a"
@@ -99,7 +100,7 @@ function AppShell() {
             href={ctas.call.href}
             aria-label="Call admissions helpline"
             data-cursor="interactive"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-tis-ink text-white"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-tis-ink text-tis-on-dark"
           >
             <Phone size={18} aria-hidden="true" />
           </a>
@@ -134,9 +135,11 @@ function AppShell() {
 
 function App() {
   return (
-    <ActiveSectionProvider>
-      <AppShell />
-    </ActiveSectionProvider>
+    <ThemeProvider>
+      <ActiveSectionProvider>
+        <AppShell />
+      </ActiveSectionProvider>
+    </ThemeProvider>
   );
 }
 

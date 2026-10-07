@@ -1,16 +1,17 @@
 const variants = {
   primary:
-    "bg-tis-red text-white hover:bg-tis-red-deep shadow-[0_12px_30px_-16px_rgba(185,1,36,0.8)]",
+    "bg-tis-red text-tis-on-brand hover:bg-tis-red-deep shadow-[0_12px_30px_-16px_rgba(185,1,36,0.75)]",
+  /* Teal fill → always dark label for contrast */
   secondary:
-    "bg-tis-teal text-tis-ink hover:bg-tis-teal-deep hover:text-white",
+    "bg-tis-teal text-tis-on-teal hover:brightness-95",
   outline:
-    "border border-white/70 bg-white/10 text-white backdrop-blur-sm hover:bg-white hover:text-tis-red",
+    "border border-tis-on-brand/70 bg-tis-on-brand/10 text-tis-on-brand backdrop-blur-sm hover:bg-tis-on-brand hover:text-tis-red",
   ghost:
-    "bg-transparent text-tis-ink hover:bg-tis-cream-dark border border-tis-ink/10",
-  dark: "bg-tis-ink text-white hover:bg-black",
-  /** High-contrast CTA for dark/red surfaces (white fill, red label). */
+    "bg-transparent text-tis-fg hover:bg-tis-cream-dark border border-tis-border",
+  dark: "bg-tis-ink text-tis-on-dark hover:bg-panel-elevated",
+  /** Warm cream fill + crimson label — for crimson/dark surfaces in both themes. */
   inverse:
-    "bg-white text-tis-red hover:bg-tis-cream hover:text-tis-red-deep focus-visible:ring-offset-tis-red shadow-[0_14px_32px_-18px_rgba(255,255,255,0.85)]",
+    "bg-accent-cream text-[#B90124] hover:bg-tis-on-brand hover:text-[#99001D] focus-visible:ring-offset-tis-red shadow-[0_14px_32px_-18px_rgba(248,245,240,0.55)]",
 };
 
 const sizes = {
@@ -28,9 +29,9 @@ export default function Button({
   ...props
 }) {
   const classes = [
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[transform,background-color,color,box-shadow] duration-200 ease-out",
+    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[transform,background-color,color,box-shadow,filter] duration-200 ease-out",
     "hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tis-teal focus-visible:ring-offset-2",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tis-teal focus-visible:ring-offset-2 focus-visible:ring-offset-tis-cream",
     variants[variant] || variants.primary,
     sizes[size] || sizes.md,
     className,

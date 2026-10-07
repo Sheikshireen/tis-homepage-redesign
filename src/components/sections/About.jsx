@@ -31,7 +31,7 @@ export default function About() {
               <span className="pb-1.5 text-sm tracking-[0.16em] text-tis-muted uppercase">
                 Established
                 <br />
-                <span className="text-tis-ink">{brand.trust}</span>
+                <span className="text-tis-fg">{brand.trust}</span>
               </span>
             </div>
           </Reveal>
@@ -43,7 +43,7 @@ export default function About() {
           </Reveal>
 
           <Reveal delay={0.14}>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-tis-muted md:text-lg">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-tis-secondary md:text-lg">
               {about.body}
             </p>
           </Reveal>
@@ -51,7 +51,7 @@ export default function About() {
           <ul className="mt-8 space-y-3.5">
             {about.points.map((point, index) => (
               <Reveal key={point} delay={0.08 + index * 0.05} variant="fadeLeft">
-                <li className="border-l-2 border-tis-red pl-4 text-base text-tis-ink/85 md:text-lg">
+                <li className="border-l-2 border-tis-red pl-4 text-base text-tis-fg md:text-lg">
                   {point}
                 </li>
               </Reveal>
@@ -78,9 +78,9 @@ export default function About() {
               style={{ y: imageY }}
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="pointer-events-none absolute inset-0 ring-1 ring-tis-ink/10 ring-inset" />
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-tis-border ring-inset" />
           </div>
-          <div className="absolute -bottom-3 -left-3 hidden bg-tis-red px-4 py-2.5 text-white md:block">
+          <div className="absolute -bottom-3 -left-3 hidden bg-tis-red px-4 py-2.5 text-tis-on-brand md:block">
             <p className="font-display text-sm font-bold tracking-wide">TIS · Dehradun</p>
           </div>
         </Reveal>

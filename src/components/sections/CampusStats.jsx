@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
 import { campusStats } from "../../data/content";
-import Reveal from "../ui/Reveal";
+import Reveal, { Stagger, StaggerItem } from "../ui/Reveal";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 
 function StatValue({ value, suffix, active }) {
@@ -40,13 +40,17 @@ function StatValue({ value, suffix, active }) {
   );
 }
 
-function StatItem({ item, index }) {
+function StatItem({ item }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.45 });
 
   return (
-    <Reveal delay={index * 0.06} variant="fadeUp">
-      <article ref={ref} className="flex flex-col border-t border-tis-ink/10 pt-6">
+    <StaggerItem
+      as="article"
+      variant="fadeUp"
+      className="flex flex-col border-t border-tis-border pt-6"
+    >
+      <div ref={ref}>
         <div className="mb-4 flex h-10 w-10 items-center justify-center">
           <img
             src={item.image}
@@ -57,11 +61,11 @@ function StatItem({ item, index }) {
           />
         </div>
         <StatValue value={item.value} suffix={item.suffix} active={inView} />
-        <p className="mt-2 max-w-[14ch] text-xs font-medium tracking-[0.14em] text-tis-muted uppercase md:text-sm">
+        <p className="mt-2 max-w-[14ch] text-xs font-medium tracking-[0.14em] text-tis-secondary uppercase md:text-sm">
           {item.label}
         </p>
-      </article>
-    </Reveal>
+      </div>
+    </StaggerItem>
   );
 }
 
@@ -87,7 +91,7 @@ export default function CampusStats() {
           <h2 className="mt-4 max-w-2xl font-display text-3xl font-bold tracking-tight md:text-5xl">
             {campusStats.headline}
           </h2>
-          <p className="mt-4 max-w-xl text-base text-tis-muted md:text-lg">
+          <p className="mt-4 max-w-xl text-base text-tis-secondary md:text-lg">
             {campusStats.subtitle}
           </p>
         </Reveal>
@@ -104,19 +108,23 @@ export default function CampusStats() {
               style={{ y: imageY }}
               className="absolute inset-[-8%] h-[116%] w-full max-w-none object-cover"
             />
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(28,28,28,0.28)_0%,transparent_45%)]" />
-            <div className="pointer-events-none absolute inset-0 ring-1 ring-tis-ink/10 ring-inset" />
-            <p className="absolute bottom-4 left-4 font-display text-sm font-bold tracking-wide text-white md:bottom-6 md:left-6 md:text-base">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(17,25,27,0.45)_0%,transparent_45%)]" />
+            <div className="pointer-events-none absolute inset-0 ring-1 ring-tis-border ring-inset" />
+            <p className="absolute bottom-4 left-4 font-display text-sm font-bold tracking-wide text-tis-on-dark md:bottom-6 md:left-6 md:text-base">
               TIS · 22 acres · Dehradun
             </p>
           </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 md:mt-16 lg:grid-cols-5 lg:gap-6">
-          {campusStats.items.map((item, index) => (
-            <StatItem key={item.label} item={item} index={index} />
+        <Stagger
+          className="mt-14 grid gap-8 sm:grid-cols-2 md:mt-16 lg:grid-cols-5 lg:gap-6"
+          stagger={0.08}
+          amount={0.2}
+        >
+          {campusStats.items.map((item) => (
+            <StatItem key={item.label} item={item} />
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

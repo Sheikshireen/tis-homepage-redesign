@@ -5,7 +5,10 @@ import Reveal from "../ui/Reveal";
 
 export default function Experience() {
   return (
-    <section id={experience.id} className="relative min-h-[78vh] overflow-hidden bg-tis-red text-white">
+    <section
+      id={experience.id}
+      className="relative min-h-[78vh] overflow-hidden bg-tis-red text-tis-on-brand"
+    >
       <motion.img
         src={experience.image}
         alt={experience.imageAlt}
@@ -25,7 +28,7 @@ export default function Experience() {
           <h2 className="mt-4 max-w-2xl font-display text-4xl font-extrabold tracking-tight md:text-6xl">
             {experience.headline}
           </h2>
-          <p className="mt-4 max-w-xl text-base text-white/80 md:text-lg">{experience.body}</p>
+          <p className="mt-4 max-w-xl text-base text-tis-on-brand/85 md:text-lg">{experience.body}</p>
         </Reveal>
 
         <Reveal delay={0.12} className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-stretch">
@@ -37,9 +40,9 @@ export default function Experience() {
             data-cursor-label="ENTER"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.985 }}
-            className="group relative flex min-h-[180px] flex-1 flex-col justify-between overflow-hidden border border-white/25 bg-white/10 p-7 backdrop-blur-sm transition hover:border-white/55 hover:bg-white/16 md:p-9"
+            className="group relative flex min-h-[180px] flex-1 flex-col justify-between overflow-hidden border border-tis-on-brand/30 bg-tis-on-brand/10 p-7 backdrop-blur-sm transition hover:border-tis-on-brand/60 hover:bg-tis-on-brand/16 md:p-9"
           >
-            <div className="absolute -right-4 -bottom-10 font-display text-8xl font-extrabold text-white/10 transition duration-500 group-hover:scale-110 group-hover:text-white/18">
+            <div className="absolute -right-4 -bottom-10 font-display text-8xl font-extrabold text-tis-on-brand/10 transition duration-500 group-hover:scale-110 group-hover:text-tis-on-brand/18">
               ENTER
             </div>
             <div>
@@ -50,7 +53,7 @@ export default function Experience() {
             </div>
             <div className="relative flex items-center justify-between">
               <span className="text-sm tracking-[0.18em] uppercase">Explore campus</span>
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-tis-red transition group-hover:translate-x-1 group-hover:-translate-y-1">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent-cream text-[#B90124] transition group-hover:translate-x-1 group-hover:-translate-y-1">
                 <ArrowUpRight size={20} aria-hidden="true" />
               </span>
             </div>
@@ -62,12 +65,12 @@ export default function Experience() {
             rel="noopener noreferrer"
             data-cursor="interactive"
             data-cursor-label="VIEW"
-            className="inline-flex min-h-[180px] w-full flex-col justify-between border border-white/20 px-6 py-7 transition hover:border-tis-teal hover:bg-white/8 sm:w-56"
+            className="inline-flex min-h-[180px] w-full flex-col justify-between border border-tis-on-brand/25 px-6 py-7 transition hover:border-tis-teal hover:bg-tis-on-brand/8 sm:w-56"
           >
             <FileText size={22} aria-hidden="true" />
             <span>
               <span className="block font-display text-xl font-bold">{ctas.brochure.label}</span>
-              <span className="mt-1 block text-xs tracking-[0.16em] text-white/65 uppercase">
+              <span className="mt-1 block text-xs tracking-[0.16em] text-tis-on-brand/70 uppercase">
                 Download PDF
               </span>
             </span>

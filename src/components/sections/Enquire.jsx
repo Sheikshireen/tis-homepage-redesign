@@ -32,6 +32,9 @@ export default function Enquire() {
     setForm(initialForm);
   };
 
+  const fieldClass =
+    "rounded-xl border border-tis-border bg-tis-cream-dark px-4 py-3 text-tis-fg outline-none transition placeholder:text-tis-muted focus:border-tis-teal focus:ring-1 focus:ring-tis-teal";
+
   return (
     <section id={enquire.id} className="bg-tis-cream px-5 py-28 md:px-8 md:py-36">
       <div className="mx-auto max-w-7xl">
@@ -41,7 +44,7 @@ export default function Enquire() {
           </p>
           <h2 className="mt-4 font-display text-4xl leading-[0.95] font-extrabold tracking-tight text-tis-red md:text-6xl lg:text-7xl">
             <span className="block">{enquire.headline}</span>
-            <span className="mt-3 block text-[0.55em] font-bold tracking-tight text-tis-ink md:mt-4">
+            <span className="mt-3 block text-[0.55em] font-bold tracking-tight text-tis-fg md:mt-4">
               <span className="text-tis-red">{brand.taglineLead}</span>{" "}
               <span className="font-accent font-normal italic text-tis-teal">
                 {brand.taglineAccent}
@@ -49,7 +52,7 @@ export default function Enquire() {
               {brand.taglineEnd}
             </span>
           </h2>
-          <p className="mt-5 max-w-xl text-base text-tis-muted md:text-lg">{enquire.body}</p>
+          <p className="mt-5 max-w-xl text-base text-tis-secondary md:text-lg">{enquire.body}</p>
         </Reveal>
 
         <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
@@ -74,23 +77,23 @@ export default function Enquire() {
                   event.preventDefault();
                   scrollToSection("enquire-form");
                 }}
-                className="flex w-full items-center justify-center rounded-full border border-tis-ink/15 bg-white px-6 py-3.5 text-sm font-medium text-tis-ink transition hover:border-tis-teal hover:text-tis-teal-deep"
+                className="flex w-full items-center justify-center rounded-full border border-tis-border-strong bg-tis-card px-6 py-3.5 text-sm font-medium text-tis-fg transition hover:border-tis-teal hover:text-tis-teal-deep"
               >
                 {ctas.enquire.label}
               </a>
               <a
                 href={ctas.call.href}
                 data-cursor="interactive"
-                className="flex items-center gap-3 rounded-2xl border border-tis-ink/8 bg-white px-4 py-3 transition hover:border-tis-red/25"
+                className="flex items-center gap-3 rounded-2xl border border-tis-border bg-tis-card px-4 py-3 transition hover:border-tis-red/40"
               >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-tis-ink text-white">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-tis-ink text-tis-on-dark">
                   <Phone size={18} aria-hidden="true" />
                 </span>
                 <span>
                   <span className="block text-xs tracking-[0.16em] text-tis-muted uppercase">
                     Call
                   </span>
-                  <span className="font-display text-lg font-bold">{contact.helpline}</span>
+                  <span className="font-display text-lg font-bold text-tis-fg">{contact.helpline}</span>
                 </span>
               </a>
               <a
@@ -98,19 +101,21 @@ export default function Enquire() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor="interactive"
-                className="flex items-center gap-3 rounded-2xl border border-tis-ink/8 bg-white px-4 py-3 transition hover:border-tis-teal"
+                className="flex items-center gap-3 rounded-2xl border border-tis-border bg-tis-card px-4 py-3 transition hover:border-tis-teal"
               >
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-tis-teal text-tis-ink">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-tis-teal text-tis-on-teal">
                   <MessageCircle size={18} aria-hidden="true" />
                 </span>
                 <span>
                   <span className="block text-xs tracking-[0.16em] text-tis-muted uppercase">
                     WhatsApp
                   </span>
-                  <span className="font-display text-lg font-bold">Chat with admissions</span>
+                  <span className="font-display text-lg font-bold text-tis-fg">
+                    Chat with admissions
+                  </span>
                 </span>
               </a>
-              <div className="flex flex-wrap gap-3 pt-2 text-sm">
+              <div className="flex flex-wrap gap-3 pt-2 text-sm text-tis-secondary">
                 <a
                   href={ctas.virtualTour.href}
                   target="_blank"
@@ -120,7 +125,7 @@ export default function Enquire() {
                 >
                   {ctas.virtualTour.label}
                 </a>
-                <span className="text-tis-ink/30">·</span>
+                <span className="text-tis-muted">·</span>
                 <a
                   href={ctas.brochure.href}
                   target="_blank"
@@ -131,7 +136,7 @@ export default function Enquire() {
                   {ctas.brochure.label}
                 </a>
               </div>
-              <p className="pt-4 text-sm leading-relaxed text-tis-muted">{contact.address}</p>
+              <p className="pt-4 text-sm leading-relaxed text-tis-secondary">{contact.address}</p>
             </div>
           </Reveal>
 
@@ -139,25 +144,25 @@ export default function Enquire() {
             <form
               id="enquire-form"
               onSubmit={onSubmit}
-              className="border border-tis-ink/10 bg-white p-6 md:p-8"
+              className="border border-tis-border bg-tis-card p-6 md:p-8"
               noValidate
             >
-              <h3 className="font-display text-2xl font-bold">Enquire Now</h3>
-              <p className="mt-2 text-sm text-tis-muted">
+              <h3 className="font-display text-2xl font-bold text-tis-fg">Enquire Now</h3>
+              <p className="mt-2 text-sm text-tis-secondary">
                 Demo enquiry form for this redesign assessment — no data is sent to a server.
               </p>
 
               {submitted ? (
                 <p
                   role="status"
-                  className="mt-6 rounded-2xl bg-tis-teal/15 px-4 py-3 text-sm text-tis-ink"
+                  className="mt-6 rounded-2xl bg-tis-teal/15 px-4 py-3 text-sm text-tis-fg"
                 >
                   Thank you. Please call or WhatsApp the admissions helpline to continue.
                 </p>
               ) : null}
 
               <div className="mt-6 grid gap-4">
-                <label className="grid gap-1.5 text-sm">
+                <label className="grid gap-1.5 text-sm text-tis-fg">
                   <span className="font-medium">Full Name</span>
                   <input
                     name="name"
@@ -165,11 +170,11 @@ export default function Enquire() {
                     onChange={onChange}
                     required
                     autoComplete="name"
-                    className="rounded-xl border border-tis-ink/15 bg-tis-cream px-4 py-3 outline-none transition focus:border-tis-teal"
+                    className={fieldClass}
                     placeholder="Enter your full name"
                   />
                 </label>
-                <label className="grid gap-1.5 text-sm">
+                <label className="grid gap-1.5 text-sm text-tis-fg">
                   <span className="font-medium">Email (optional)</span>
                   <input
                     type="email"
@@ -177,11 +182,11 @@ export default function Enquire() {
                     value={form.email}
                     onChange={onChange}
                     autoComplete="email"
-                    className="rounded-xl border border-tis-ink/15 bg-tis-cream px-4 py-3 outline-none transition focus:border-tis-teal"
+                    className={fieldClass}
                     placeholder="Enter email id"
                   />
                 </label>
-                <label className="grid gap-1.5 text-sm">
+                <label className="grid gap-1.5 text-sm text-tis-fg">
                   <span className="font-medium">Mobile Number</span>
                   <input
                     type="tel"
@@ -190,18 +195,18 @@ export default function Enquire() {
                     onChange={onChange}
                     required
                     autoComplete="tel"
-                    className="rounded-xl border border-tis-ink/15 bg-tis-cream px-4 py-3 outline-none transition focus:border-tis-teal"
+                    className={fieldClass}
                     placeholder="Enter your mobile number"
                   />
                 </label>
-                <label className="grid gap-1.5 text-sm">
+                <label className="grid gap-1.5 text-sm text-tis-fg">
                   <span className="font-medium">Select Class</span>
                   <select
                     name="className"
                     value={form.className}
                     onChange={onChange}
                     required
-                    className="rounded-xl border border-tis-ink/15 bg-tis-cream px-4 py-3 outline-none transition focus:border-tis-teal"
+                    className={fieldClass}
                   >
                     <option value="">Select Class</option>
                     {enquire.classes.map((item) => (
@@ -211,7 +216,7 @@ export default function Enquire() {
                     ))}
                   </select>
                 </label>
-                <label className="flex items-start gap-3 text-sm text-tis-muted">
+                <label className="flex items-start gap-3 text-sm text-tis-secondary">
                   <input
                     type="checkbox"
                     name="consent"

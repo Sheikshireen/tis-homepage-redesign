@@ -26,7 +26,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-tis-red text-white"
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-tis-red text-tis-on-brand"
     >
       <div className="absolute inset-0 overflow-hidden">
         <motion.img
@@ -98,7 +98,7 @@ export default function Hero() {
             initial={reduced ? false : { opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: reduced ? 0 : 0.55, duration: 0.6 }}
-            className="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-white/85 sm:mt-6 sm:text-base md:text-lg"
+            className="mt-5 max-w-lg text-[0.95rem] leading-relaxed text-tis-on-brand/90 sm:mt-6 sm:text-base md:text-lg"
           >
             {hero.supporting}
           </motion.p>
@@ -141,11 +141,11 @@ export default function Hero() {
         onClick={goAbout}
         data-cursor="interactive"
         data-cursor-label="SCROLL"
-        className="absolute bottom-24 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-white/70 md:bottom-10"
+        className="absolute bottom-24 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 text-tis-on-brand/75 md:bottom-10"
         aria-label="Scroll to explore Tulas"
       >
         <span className="text-[10px] tracking-[0.22em] uppercase">Scroll to explore</span>
-        <span className="scroll-cue-line inline-flex h-9 w-5 items-start justify-center rounded-full border border-white/35 pt-1.5">
+        <span className="scroll-cue-line inline-flex h-9 w-5 items-start justify-center rounded-full border border-tis-on-brand/40 pt-1.5">
           <ChevronDown size={12} aria-hidden="true" />
         </span>
       </a>

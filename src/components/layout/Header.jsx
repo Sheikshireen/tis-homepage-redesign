@@ -5,6 +5,7 @@ import { useActiveSectionContext } from "../../context/ActiveSectionContext";
 import { brand, ctas, navLinks } from "../../data/content";
 import { getSectionIdFromHref, scrollToSection } from "../../utils/scrollToSection";
 import Button from "../ui/Button";
+import ThemeToggle from "../ui/ThemeToggle";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 
 export default function Header({ onEnquire }) {
@@ -54,7 +55,7 @@ export default function Header({ onEnquire }) {
       <div
         className={`mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-1.5 transition-all duration-300 md:px-4 md:py-2 ${
           scrolled
-            ? "rounded-full border border-tis-ink/6 bg-tis-cream/88 shadow-sm backdrop-blur-md"
+            ? "rounded-full border border-tis-border bg-tis-cream/90 shadow-sm backdrop-blur-md"
             : "rounded-full bg-transparent"
         }`}
       >
@@ -69,19 +70,19 @@ export default function Header({ onEnquire }) {
             alt={`${brand.name} logo`}
             width={40}
             height={40}
-            className="h-9 w-9 rounded-full bg-white object-contain p-0.5 shadow-sm md:h-10 md:w-10"
+            className="h-9 w-9 rounded-full bg-accent-cream object-contain p-0.5 shadow-sm md:h-10 md:w-10"
           />
           <div className="hidden min-[420px]:block">
             <p
               className={`font-display text-sm font-bold leading-tight ${
-                scrolled ? "text-tis-ink" : "text-white"
+                scrolled ? "text-tis-fg" : "text-tis-on-brand"
               }`}
             >
               {brand.shortName}
             </p>
             <p
               className={`text-[10px] tracking-wide md:text-[11px] ${
-                scrolled ? "text-tis-muted" : "text-white/80"
+                scrolled ? "text-tis-secondary" : "text-tis-on-brand/80"
               }`}
             >
               Tulas International
@@ -105,10 +106,10 @@ export default function Header({ onEnquire }) {
                   scrolled
                     ? active
                       ? "text-tis-red"
-                      : "text-tis-ink/70 hover:bg-tis-cream-dark hover:text-tis-red"
+                      : "text-tis-secondary hover:bg-tis-cream-dark hover:text-tis-red"
                     : active
-                      ? "text-white"
-                      : "text-white/75 hover:bg-white/10 hover:text-white"
+                      ? "text-tis-on-brand"
+                      : "text-tis-on-brand/75 hover:bg-tis-on-brand/10 hover:text-tis-on-brand"
                 }`}
               >
                 {link.label}
@@ -123,11 +124,12 @@ export default function Header({ onEnquire }) {
         </nav>
 
         <div className="flex items-center gap-1.5">
+          <ThemeToggle scrolled={scrolled} />
           <a
             href={ctas.call.href}
             data-cursor="interactive"
             className={`hidden items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[13px] font-medium sm:inline-flex ${
-              scrolled ? "text-tis-ink" : "text-white"
+              scrolled ? "text-tis-fg" : "text-tis-on-brand"
             }`}
             aria-label={`Call admissions helpline ${ctas.call.label}`}
           >
@@ -147,7 +149,9 @@ export default function Header({ onEnquire }) {
           <button
             type="button"
             className={`inline-flex rounded-full p-2 lg:hidden ${
-              scrolled ? "bg-tis-ink text-white" : "bg-white/15 text-white"
+              scrolled
+                ? "bg-tis-ink text-tis-on-dark"
+                : "bg-tis-on-brand/15 text-tis-on-brand"
             }`}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -164,7 +168,7 @@ export default function Header({ onEnquire }) {
         {open ? (
           <motion.div
             id="mobile-nav"
-            className="fixed inset-0 z-40 bg-tis-ink/96 px-6 pt-24 pb-10 text-white lg:hidden"
+            className="fixed inset-0 z-40 bg-tis-ink/96 px-6 pt-24 pb-10 text-tis-on-dark lg:hidden"
             initial={reduced ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduced ? undefined : { opacity: 0, y: -8 }}
@@ -179,7 +183,7 @@ export default function Header({ onEnquire }) {
                   className={`rounded-2xl px-4 py-3 font-display text-2xl ${
                     activeHref === link.href
                       ? "font-extrabold text-tis-teal"
-                      : "font-semibold text-white/80"
+                      : "font-semibold text-on-panel-muted"
                   }`}
                   initial={reduced ? false : { opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -189,6 +193,15 @@ export default function Header({ onEnquire }) {
                 </motion.a>
               ))}
               <div className="mt-6 flex flex-col gap-3">
+                <div className="mb-2 flex items-center justify-between rounded-2xl border border-tis-on-dark/20 px-4 py-3">
+                  <span className="text-sm tracking-[0.14em] text-on-panel-muted uppercase">
+                    Theme
+                  </span>
+                  <ThemeToggle
+                    scrolled
+                    className="!border-tis-on-dark/25 !bg-tis-on-dark/10 !text-tis-on-dark"
+                  />
+                </div>
                 <Button as="a" href={ctas.apply.href} target="_blank" rel="noopener noreferrer">
                   {ctas.apply.label}
                 </Button>

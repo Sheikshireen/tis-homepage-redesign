@@ -8,8 +8,9 @@ export default function SectionHeading({
 }) {
   const alignClass =
     align === "center" ? "mx-auto text-center items-center" : "items-start text-left";
-  const toneClass = tone === "light" ? "text-white" : "text-tis-ink";
-  const mutedClass = tone === "light" ? "text-white/75" : "text-tis-muted";
+  /* tone=light → text on always-dark panels; tone=dark → theme page text */
+  const toneClass = tone === "light" ? "text-tis-on-dark" : "text-tis-fg";
+  const mutedClass = tone === "light" ? "text-tis-on-dark/80" : "text-tis-secondary";
 
   return (
     <div className={`flex max-w-3xl flex-col gap-4 ${alignClass} ${toneClass} ${className}`}>

@@ -1,14 +1,126 @@
 @import "tailwindcss";
 
+/*
+ * Tulas semantic color system (Light + Dark)
+ * Existing tis-* utilities alias these tokens so components stay stable.
+ */
+
+:root {
+  /* Surfaces */
+  --background: #f8f5f0;
+  --surface: #ffffff;
+  --surface-secondary: #f1ede7;
+  --card: #ffffff;
+  --card-secondary: #f5f2ed;
+
+  /* Text */
+  --text-primary: #17191b;
+  --text-secondary: #4b5358;
+  --text-muted: #697277;
+
+  /* Borders */
+  --border: #ddd8d0;
+  --border-strong: #c8c1b8;
+
+  /* Brand */
+  --brand-red: #b90124;
+  --brand-red-hover: #99001d;
+  --brand-red-secondary: #a41e34;
+  --brand-teal: #60bab1;
+  --brand-teal-dark: #287f79;
+  --accent-cream: #f8f5f0;
+
+  /* Inverse / panel (UI invert) */
+  --inverse-background: #17191b;
+  --inverse-text: #f8f5f0;
+
+  /* Always-dark brand panels (Sports, Life, Footer, menus) — never cream */
+  --panel: #17191b;
+  --panel-elevated: #22262a;
+  --on-panel: #f5f3ef;
+  --on-panel-muted: #b8bec3;
+  --on-brand: #f8f5f0;
+  --on-teal: #17191b;
+}
+
+html.dark {
+  --background: #111417;
+  --surface: #181c20;
+  --surface-secondary: #20252a;
+  --card: #20252a;
+  --card-secondary: #252b30;
+
+  --text-primary: #f5f3ef;
+  --text-secondary: #b8bec3;
+  --text-muted: #8d969d;
+
+  --border: #30363b;
+  --border-strong: #424a50;
+
+  --brand-red: #c51f3a;
+  --brand-red-hover: #e03450;
+  --brand-red-secondary: #a41e34;
+  --brand-teal: #67c4bb;
+  --brand-teal-dark: #8ad8d0;
+  --accent-cream: #e9e1d4;
+
+  --inverse-background: #f8f5f0;
+  --inverse-text: #17191b;
+
+  --panel: #0c0f12;
+  --panel-elevated: #181c20;
+  --on-panel: #f5f3ef;
+  --on-panel-muted: #b8bec3;
+  --on-brand: #f8f5f0;
+  --on-teal: #17191b;
+}
+
 @theme {
-  --color-tis-red: #b90124;
-  --color-tis-red-deep: #8f0120;
-  --color-tis-teal: #60bab1;
-  --color-tis-teal-deep: #3d9a92;
-  --color-tis-cream: #f8f5f0;
-  --color-tis-cream-dark: #efe8dc;
-  --color-tis-ink: #1c1c1c;
-  --color-tis-muted: #5f5f5f;
+  /* Semantic → Tailwind color utilities */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-card: var(--card);
+  --color-card-secondary: var(--card-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-hover: var(--brand-red-hover);
+  --color-brand-teal: var(--brand-teal);
+  --color-brand-teal-dark: var(--brand-teal-dark);
+  --color-accent-cream: var(--accent-cream);
+  --color-inverse: var(--inverse-background);
+  --color-inverse-text: var(--inverse-text);
+  --color-panel: var(--panel);
+  --color-panel-elevated: var(--panel-elevated);
+  --color-on-panel: var(--on-panel);
+  --color-on-panel-muted: var(--on-panel-muted);
+  --color-on-brand: var(--on-brand);
+  --color-on-teal: var(--on-teal);
+
+  /* Legacy tis-* aliases (keep existing class names working) */
+  --color-tis-cream: var(--background);
+  --color-tis-cream-dark: var(--surface-secondary);
+  --color-tis-surface: var(--card);
+  --color-tis-card: var(--card);
+  --color-tis-card-secondary: var(--card-secondary);
+  --color-tis-fg: var(--text-primary);
+  --color-tis-secondary: var(--text-secondary);
+  --color-tis-muted: var(--text-muted);
+  --color-tis-border: var(--border);
+  --color-tis-border-strong: var(--border-strong);
+  --color-tis-red: var(--brand-red);
+  --color-tis-red-deep: var(--brand-red-hover);
+  --color-tis-teal: var(--brand-teal);
+  --color-tis-teal-deep: var(--brand-teal-dark);
+  --color-tis-ink: var(--panel);
+  --color-tis-on-dark: var(--on-panel);
+  --color-tis-on-brand: var(--on-brand);
+  --color-tis-on-teal: var(--on-teal);
+
   --font-display: "Syne", sans-serif;
   --font-body: "Outfit", sans-serif;
   --font-accent: "Instrument Serif", serif;
@@ -17,9 +129,13 @@
 @layer base {
   html {
     scroll-behavior: auto;
+    color-scheme: light;
   }
 
-  /* Offset fixed header when using native hash / programmatic anchors */
+  html.dark {
+    color-scheme: dark;
+  }
+
   section[id],
   #enquire-form,
   #top {
@@ -37,15 +153,19 @@
     margin: 0;
     min-height: 100vh;
     font-family: var(--font-body);
-    color: var(--color-tis-ink);
-    background-color: var(--color-tis-cream);
+    color: var(--text-primary);
+    background-color: var(--background);
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease,
+      border-color 0.35s ease;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background: color-mix(in srgb, var(--color-tis-red) 25%, white);
-    color: var(--color-tis-ink);
+    background: color-mix(in srgb, var(--brand-red) 28%, transparent);
+    color: var(--text-primary);
   }
 
   a {
@@ -58,8 +178,27 @@
     display: block;
   }
 
+  input,
+  select,
+  textarea {
+    color: var(--text-primary);
+    background-color: var(--surface-secondary);
+    border-color: var(--border);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+
+  option {
+    background-color: var(--surface);
+    color: var(--text-primary);
+  }
+
   :focus-visible {
-    outline: 2px solid var(--color-tis-teal);
+    outline: 2px solid var(--brand-teal);
     outline-offset: 3px;
   }
 }

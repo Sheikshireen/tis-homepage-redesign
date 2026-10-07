@@ -47,14 +47,14 @@ export default function Modal({ open, onClose, title, children }) {
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="mb-5 flex items-start justify-between gap-4">
-              <h3 id="modal-title" className="font-display text-2xl font-bold text-tis-ink">
+              <h3 id="modal-title" className="font-display text-2xl font-bold text-tis-fg">
                 {title}
               </h3>
               <button
                 type="button"
                 onClick={onClose}
                 data-cursor="interactive"
-                className="rounded-full p-2 text-tis-ink transition hover:bg-tis-cream-dark"
+                className="rounded-full p-2 text-tis-secondary transition hover:bg-tis-cream-dark hover:text-tis-fg"
                 aria-label="Close dialog"
               >
                 <X size={20} aria-hidden="true" />

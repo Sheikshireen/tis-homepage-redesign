@@ -20,7 +20,6 @@ export default function Sports() {
     return () => window.clearInterval(timer);
   }, [reduced, paused]);
 
-  // Keep the active sport visible inside the list only — never scroll the page.
   useEffect(() => {
     const container = listRef.current;
     if (!container) return;
@@ -49,7 +48,10 @@ export default function Sports() {
   const activate = (index) => setActiveIndex(index);
 
   return (
-    <section id={sports.id} className="overflow-hidden bg-tis-ink py-28 text-white md:py-36">
+    <section
+      id={sports.id}
+      className="overflow-hidden bg-tis-ink py-28 text-tis-on-dark md:py-36"
+    >
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
           <SectionHeading
@@ -69,7 +71,10 @@ export default function Sports() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <Reveal variant="scaleIn" className="relative min-h-[520px] overflow-hidden bg-white/5">
+          <Reveal
+            variant="scaleIn"
+            className="relative min-h-[520px] overflow-hidden bg-panel-elevated"
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={active.name}
@@ -84,12 +89,12 @@ export default function Sports() {
                   alt={`${active.name} at Tulas International School`}
                   className="h-full w-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-tis-ink via-tis-ink/35 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-tis-ink via-tis-ink/40 to-transparent" />
                 <div className="absolute right-0 bottom-0 left-0 p-8">
                   <p className="text-xs tracking-[0.22em] text-tis-teal uppercase">
                     Featured sport
                   </p>
-                  <h3 className="mt-2 font-display text-4xl font-extrabold xl:text-5xl">
+                  <h3 className="mt-2 font-display text-4xl font-extrabold text-tis-on-dark xl:text-5xl">
                     {active.name}
                   </h3>
                 </div>
@@ -115,8 +120,8 @@ export default function Sports() {
                   onClick={() => activate(index)}
                   className={`flex w-full items-center gap-3 border-l-2 px-3 py-3 text-left transition ${
                     isActive
-                      ? "border-tis-teal bg-white/10"
-                      : "border-transparent hover:bg-white/5"
+                      ? "border-tis-teal bg-tis-on-dark/10 text-tis-on-dark"
+                      : "border-transparent text-on-panel-muted hover:bg-tis-on-dark/5 hover:text-tis-on-dark"
                   }`}
                 >
                   <img
@@ -143,7 +148,7 @@ export default function Sports() {
                   onClick={() => activate(index)}
                   data-cursor="interactive"
                   className={`relative w-[78vw] max-w-[320px] shrink-0 snap-start overflow-hidden text-left ${
-                    isActive ? "ring-2 ring-tis-teal" : "ring-1 ring-white/10"
+                    isActive ? "ring-2 ring-tis-teal" : "ring-1 ring-tis-on-dark/15"
                   }`}
                 >
                   <img
@@ -153,7 +158,7 @@ export default function Sports() {
                     className="h-72 w-full object-cover object-top"
                   />
                   <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-tis-ink via-tis-ink/70 to-transparent p-4 pt-16">
-                    <h3 className="font-display text-xl font-bold">{item.name}</h3>
+                    <h3 className="font-display text-xl font-bold text-tis-on-dark">{item.name}</h3>
                   </div>
                 </button>
               );
@@ -166,7 +171,7 @@ export default function Sports() {
             <p className="font-accent text-2xl text-tis-teal italic md:text-3xl">
               {sports.secretPrompt}
             </p>
-            <p className="mt-5 text-base leading-relaxed text-white/75 md:text-lg">
+            <p className="mt-5 text-base leading-relaxed text-on-panel-muted md:text-lg">
               {sports.secretAnswer}
             </p>
           </blockquote>

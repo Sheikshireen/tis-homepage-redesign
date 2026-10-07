@@ -33,7 +33,7 @@ function QuoteChapter({ item, index }) {
         </motion.div>
 
         <Reveal delay={0.1} variant="fadeUp">
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-tis-muted md:text-lg">
+          <p className="mt-6 max-w-lg text-base leading-relaxed text-tis-secondary md:text-lg">
             {item.body}
           </p>
         </Reveal>
@@ -60,18 +60,18 @@ function QuoteChapter({ item, index }) {
 
 export default function WhyTulas() {
   return (
-    <section id={whyTulas.id} className="bg-white px-5 py-20 md:px-8 md:py-24">
+    <section id={whyTulas.id} className="bg-surface px-5 py-20 md:px-8 md:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-3xl">
           <h2 className="font-display text-4xl font-extrabold tracking-tight text-tis-red uppercase md:text-5xl lg:text-6xl">
             {whyTulas.title}
           </h2>
-          <p className="mt-4 max-w-2xl font-display text-2xl font-bold tracking-tight text-tis-ink md:text-3xl">
+          <p className="mt-4 max-w-2xl font-display text-2xl font-bold tracking-tight text-tis-fg md:text-3xl">
             {whyTulas.headline}
           </p>
         </div>
 
-        <div className="mt-10 border-t border-tis-ink/10 pt-6 md:mt-12 md:pt-8">
+        <div className="mt-10 border-t border-tis-border pt-6 md:mt-12 md:pt-8">
           {whyTulas.items.map((item, index) => (
             <QuoteChapter key={item.quote} item={item} index={index} />
           ))}

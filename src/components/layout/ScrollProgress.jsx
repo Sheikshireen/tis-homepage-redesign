@@ -13,7 +13,7 @@ export default function ScrollProgress() {
       aria-valuenow={Math.round(progress * 100)}
     >
       <div
-        className="h-full origin-left bg-linear-to-r from-tis-red via-[#d11a3d] to-tis-teal"
+        className="h-full origin-left bg-linear-to-r from-tis-red via-[#a41e34] to-tis-teal"
         style={{ transform: `scaleX(${progress})` }}
       />
     </div>

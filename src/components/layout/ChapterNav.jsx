@@ -32,15 +32,15 @@ export default function ChapterNav() {
                   activate(chapter.id);
                   scrollToSection(chapter.id, { behavior: reduced ? "auto" : "smooth" });
                 }}
-                className={`group flex items-center justify-end gap-3 transition ${
-                  active ? "opacity-100" : "opacity-40 hover:opacity-80"
+                className={`group flex items-center justify-end gap-3 rounded-l-md bg-tis-cream/55 px-2 py-1 backdrop-blur-sm transition ${
+                  active ? "opacity-100" : "opacity-70 hover:opacity-95"
                 }`}
               >
                 <span
                   className={`text-right text-[10px] tracking-[0.18em] uppercase transition ${
                     active
                       ? "font-extrabold text-tis-red"
-                      : "font-semibold text-tis-ink/65"
+                      : "font-semibold text-tis-secondary"
                   }`}
                 >
                   <span className="mr-1.5 tabular-nums">{chapter.number}</span>
@@ -48,7 +48,7 @@ export default function ChapterNav() {
                 </span>
                 <span
                   className={`block transition-all duration-300 ${
-                    active ? "h-[2px] w-9 bg-tis-red" : "h-px w-4 bg-tis-ink/30 group-hover:w-6"
+                    active ? "h-[2px] w-9 bg-tis-red" : "h-px w-4 bg-tis-border-strong group-hover:w-6"
                   }`}
                 />
               </a>
