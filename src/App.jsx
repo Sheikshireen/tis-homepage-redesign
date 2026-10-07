@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageCircle, Phone } from "lucide-react";
 import ChapterNav from "./components/layout/ChapterNav";
 import CustomCursor from "./components/layout/CustomCursor";
@@ -17,17 +17,32 @@ import Voices from "./components/sections/Voices";
 import WhyTulas from "./components/sections/WhyTulas";
 import Button from "./components/ui/Button";
 import Modal from "./components/ui/Modal";
+import { ActiveSectionProvider, useActiveSectionContext } from "./context/ActiveSectionContext";
 import { ctas } from "./data/content";
+import { scrollToSection } from "./utils/scrollToSection";
 
-function App() {
+function AppShell() {
   const [enquireOpen, setEnquireOpen] = useState(false);
+  const { activate } = useActiveSectionContext();
 
   const openEnquire = () => setEnquireOpen(true);
 
   const goToEnquire = () => {
     setEnquireOpen(false);
-    document.getElementById("enquire")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    activate("enquire");
+    scrollToSection("enquire");
   };
+
+  // Honor deep links on load only — never auto-scroll during normal browsing.
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "");
+    if (!id) return undefined;
+    const timer = window.setTimeout(() => {
+      activate(id);
+      scrollToSection(id, { behavior: "auto" });
+    }, 50);
+    return () => window.clearTimeout(timer);
+  }, [activate]);
 
   return (
     <>
@@ -114,6 +129,14 @@ function App() {
         </div>
       </Modal>
     </>
+  );
+}
+
+function App() {
+  return (
+    <ActiveSectionProvider>
+      <AppShell />
+    </ActiveSectionProvider>
   );
 }
 

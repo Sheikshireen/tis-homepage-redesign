@@ -5,12 +5,12 @@ import SectionHeading from "../ui/SectionHeading";
 
 export default function Recognition() {
   return (
-    <section id={recognition.id} className="bg-tis-cream px-5 py-24 md:px-8 md:py-32">
+    <section id={recognition.id} className="bg-tis-cream px-5 py-28 md:px-8 md:py-36">
       <div className="mx-auto max-w-7xl">
         <Reveal>
           <SectionHeading
             eyebrow={recognition.title}
-            title="Recognised among India’s co-educational boarding schools"
+            title={recognition.headline}
             subtitle={recognition.subtitle}
           />
         </Reveal>

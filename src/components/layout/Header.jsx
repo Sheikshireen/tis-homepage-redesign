@@ -1,45 +1,24 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Phone, X } from "lucide-react";
+import { useActiveSectionContext } from "../../context/ActiveSectionContext";
 import { brand, ctas, navLinks } from "../../data/content";
+import { getSectionIdFromHref, scrollToSection } from "../../utils/scrollToSection";
 import Button from "../ui/Button";
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 
 export default function Header({ onEnquire }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeHref, setActiveHref] = useState("#top");
   const reduced = usePrefersReducedMotion();
+  const { activeId, activate } = useActiveSectionContext();
+  const activeHref = activeId ? `#${activeId}` : "#top";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const ids = navLinks.map((link) => link.href.replace("#", ""));
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter(Boolean);
-
-    if (!elements.length) return undefined;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]?.target?.id) {
-          setActiveHref(`#${visible[0].target.id}`);
-        }
-      },
-      { rootMargin: "-35% 0px -45% 0px", threshold: [0.1, 0.35, 0.6] },
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -51,6 +30,21 @@ export default function Header({ onEnquire }) {
 
   const closeMenu = () => setOpen(false);
 
+  const onNavClick = (event, href) => {
+    const id = getSectionIdFromHref(href);
+    if (!id) return;
+    event.preventDefault();
+    closeMenu();
+    if (id === "top") {
+      activate("");
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+      if (history.replaceState) history.replaceState(null, "", "#top");
+      return;
+    }
+    activate(id);
+    scrollToSection(id, { behavior: reduced ? "auto" : "smooth" });
+  };
+
   return (
     <header
       className={`fixed top-2 right-0 left-0 z-50 transition-all duration-300 ${
@@ -60,11 +54,16 @@ export default function Header({ onEnquire }) {
       <div
         className={`mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-1.5 transition-all duration-300 md:px-4 md:py-2 ${
           scrolled
-            ? "rounded-full border border-tis-ink/8 bg-tis-cream/92 shadow-md backdrop-blur-md"
-            : "rounded-full bg-black/10 backdrop-blur-[2px]"
+            ? "rounded-full border border-tis-ink/6 bg-tis-cream/88 shadow-sm backdrop-blur-md"
+            : "rounded-full bg-transparent"
         }`}
       >
-        <a href="#top" className="flex items-center gap-2.5" data-cursor="interactive">
+        <a
+          href="#top"
+          className="flex items-center gap-2.5"
+          data-cursor="interactive"
+          onClick={(event) => onNavClick(event, "#top")}
+        >
           <img
             src={brand.logo}
             alt={`${brand.name} logo`}
@@ -99,19 +98,22 @@ export default function Header({ onEnquire }) {
                 href={link.href}
                 data-cursor="interactive"
                 aria-current={active ? "true" : undefined}
-                className={`relative rounded-full px-2.5 py-1.5 text-[13px] font-medium transition ${
+                onClick={(event) => onNavClick(event, link.href)}
+                className={`relative rounded-full px-2.5 py-1.5 text-[13px] transition ${
+                  active ? "font-extrabold" : "font-medium"
+                } ${
                   scrolled
                     ? active
                       ? "text-tis-red"
-                      : "text-tis-ink/75 hover:bg-tis-cream-dark hover:text-tis-red"
+                      : "text-tis-ink/70 hover:bg-tis-cream-dark hover:text-tis-red"
                     : active
                       ? "text-white"
-                      : "text-white/80 hover:bg-white/10 hover:text-white"
+                      : "text-white/75 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute right-2.5 bottom-0.5 left-2.5 h-px origin-left transition-transform duration-300 ${
+                  className={`absolute right-2.5 bottom-0.5 left-2.5 h-[2px] origin-left transition-transform duration-300 ${
                     scrolled ? "bg-tis-red" : "bg-tis-teal"
                   } ${active ? "scale-x-100" : "scale-x-0"}`}
                 />
@@ -163,18 +165,22 @@ export default function Header({ onEnquire }) {
           <motion.div
             id="mobile-nav"
             className="fixed inset-0 z-40 bg-tis-ink/96 px-6 pt-24 pb-10 text-white lg:hidden"
-            initial={reduced ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduced ? undefined : { opacity: 0 }}
+            initial={reduced ? false : { opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduced ? undefined : { opacity: 0, y: -8 }}
           >
             <nav className="mx-auto flex max-w-md flex-col gap-1" aria-label="Mobile">
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.href}
                   href={link.href}
-                  onClick={closeMenu}
+                  onClick={(event) => onNavClick(event, link.href)}
                   data-cursor="interactive"
-                  className="rounded-2xl px-4 py-3 font-display text-2xl font-semibold"
+                  className={`rounded-2xl px-4 py-3 font-display text-2xl ${
+                    activeHref === link.href
+                      ? "font-extrabold text-tis-teal"
+                      : "font-semibold text-white/80"
+                  }`}
                   initial={reduced ? false : { opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.04 }}

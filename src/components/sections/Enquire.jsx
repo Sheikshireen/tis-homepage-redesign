@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { MessageCircle, Phone } from "lucide-react";
-import { contact, ctas, enquire } from "../../data/content";
+import { brand, contact, ctas, enquire } from "../../data/content";
 import Button from "../ui/Button";
 import Reveal from "../ui/Reveal";
+import { scrollToSection } from "../../utils/scrollToSection";
 
 const initialForm = {
   name: "",
@@ -32,16 +33,23 @@ export default function Enquire() {
   };
 
   return (
-    <section id={enquire.id} className="bg-tis-cream px-5 py-24 md:px-8 md:py-32">
+    <section id={enquire.id} className="bg-tis-cream px-5 py-28 md:px-8 md:py-36">
       <div className="mx-auto max-w-7xl">
         <Reveal variant="clipUp">
-          <p className="text-xs font-semibold tracking-[0.22em] text-tis-teal-deep uppercase">
+          <p className="text-sm font-semibold tracking-[0.2em] text-tis-teal-deep uppercase">
             {enquire.title}
           </p>
-          <h2 className="mt-4 font-display text-4xl font-extrabold tracking-tight text-tis-red md:text-6xl lg:text-7xl">
-            {enquire.headline}
+          <h2 className="mt-4 font-display text-4xl leading-[0.95] font-extrabold tracking-tight text-tis-red md:text-6xl lg:text-7xl">
+            <span className="block">{enquire.headline}</span>
+            <span className="mt-3 block text-[0.55em] font-bold tracking-tight text-tis-ink md:mt-4">
+              <span className="text-tis-red">{brand.taglineLead}</span>{" "}
+              <span className="font-accent font-normal italic text-tis-teal">
+                {brand.taglineAccent}
+              </span>{" "}
+              {brand.taglineEnd}
+            </span>
           </h2>
-          <p className="mt-4 max-w-xl text-base text-tis-muted md:text-lg">{enquire.body}</p>
+          <p className="mt-5 max-w-xl text-base text-tis-muted md:text-lg">{enquire.body}</p>
         </Reveal>
 
         <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
@@ -62,6 +70,10 @@ export default function Enquire() {
                 href="#enquire-form"
                 data-cursor="interactive"
                 data-cursor-label="ENQUIRE"
+                onClick={(event) => {
+                  event.preventDefault();
+                  scrollToSection("enquire-form");
+                }}
                 className="flex w-full items-center justify-center rounded-full border border-tis-ink/15 bg-white px-6 py-3.5 text-sm font-medium text-tis-ink transition hover:border-tis-teal hover:text-tis-teal-deep"
               >
                 {ctas.enquire.label}

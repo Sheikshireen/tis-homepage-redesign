@@ -20,17 +20,36 @@ export default function Sports() {
     return () => window.clearInterval(timer);
   }, [reduced, paused]);
 
+  // Keep the active sport visible inside the list only — never scroll the page.
   useEffect(() => {
-    const node = listRef.current;
-    if (!node) return;
-    const button = node.querySelector(`[data-sport-index="${activeIndex}"]`);
-    button?.scrollIntoView({ block: "nearest", behavior: reduced ? "auto" : "smooth" });
+    const container = listRef.current;
+    if (!container) return;
+    const button = container.querySelector(`[data-sport-index="${activeIndex}"]`);
+    if (!(button instanceof HTMLElement)) return;
+
+    const buttonTop = button.offsetTop;
+    const buttonBottom = buttonTop + button.offsetHeight;
+    const viewTop = container.scrollTop;
+    const viewBottom = viewTop + container.clientHeight;
+    const padding = 12;
+
+    if (buttonTop < viewTop + padding) {
+      container.scrollTo({
+        top: Math.max(0, buttonTop - padding),
+        behavior: reduced ? "auto" : "smooth",
+      });
+    } else if (buttonBottom > viewBottom - padding) {
+      container.scrollTo({
+        top: buttonBottom - container.clientHeight + padding,
+        behavior: reduced ? "auto" : "smooth",
+      });
+    }
   }, [activeIndex, reduced]);
 
   const activate = (index) => setActiveIndex(index);
 
   return (
-    <section id={sports.id} className="overflow-hidden bg-tis-ink py-24 text-white md:py-32">
+    <section id={sports.id} className="overflow-hidden bg-tis-ink py-28 text-white md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
           <SectionHeading

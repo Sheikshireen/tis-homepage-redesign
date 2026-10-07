@@ -16,14 +16,17 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
+  }
+
+  /* Offset fixed header when using native hash / programmatic anchors */
+  section[id],
+  #enquire-form,
+  #top {
+    scroll-margin-top: 6rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
     .ken-burns,
     .marquee-track {
       animation: none !important;

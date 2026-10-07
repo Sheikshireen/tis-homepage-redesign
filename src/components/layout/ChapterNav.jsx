@@ -1,31 +1,13 @@
-import { useEffect, useState } from "react";
+import { useActiveSectionContext } from "../../context/ActiveSectionContext";
 import { chapters } from "../../data/content";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
+import { scrollToSection } from "../../utils/scrollToSection";
 
 export default function ChapterNav() {
-  const [activeId, setActiveId] = useState(chapters[0]?.id || "");
   const isDesktop = useMediaQuery("(min-width: 1280px)");
-
-  useEffect(() => {
-    const elements = chapters
-      .map((chapter) => document.getElementById(chapter.id))
-      .filter(Boolean);
-
-    if (!elements.length) return undefined;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]?.target?.id) setActiveId(visible[0].target.id);
-      },
-      { rootMargin: "-40% 0px -45% 0px", threshold: [0.12, 0.35, 0.55] },
-    );
-
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  const reduced = usePrefersReducedMotion();
+  const { activeId, activate } = useActiveSectionContext();
 
   if (!isDesktop) return null;
 
@@ -44,21 +26,29 @@ export default function ChapterNav() {
                 data-cursor="interactive"
                 data-cursor-label="VIEW"
                 aria-current={active ? "true" : undefined}
+                aria-label={`${chapter.number} ${chapter.label}`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  activate(chapter.id);
+                  scrollToSection(chapter.id, { behavior: reduced ? "auto" : "smooth" });
+                }}
                 className={`group flex items-center justify-end gap-3 transition ${
-                  active ? "opacity-100" : "opacity-45 hover:opacity-80"
+                  active ? "opacity-100" : "opacity-40 hover:opacity-80"
                 }`}
               >
                 <span
-                  className={`text-right text-[10px] font-semibold tracking-[0.18em] uppercase transition ${
-                    active ? "text-tis-red" : "text-tis-ink/70"
+                  className={`text-right text-[10px] tracking-[0.18em] uppercase transition ${
+                    active
+                      ? "font-extrabold text-tis-red"
+                      : "font-semibold text-tis-ink/65"
                   }`}
                 >
                   <span className="mr-1.5 tabular-nums">{chapter.number}</span>
                   {chapter.label}
                 </span>
                 <span
-                  className={`block h-px transition-all duration-300 ${
-                    active ? "w-8 bg-tis-red" : "w-4 bg-tis-ink/30 group-hover:w-6"
+                  className={`block transition-all duration-300 ${
+                    active ? "h-[2px] w-9 bg-tis-red" : "h-px w-4 bg-tis-ink/30 group-hover:w-6"
                   }`}
                 />
               </a>

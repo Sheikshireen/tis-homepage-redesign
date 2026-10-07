@@ -14,12 +14,12 @@ export default function Experience() {
         whileHover={{ scale: 1.03 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(100,1,24,0.92)_0%,rgba(28,28,28,0.72)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(96,186,177,0.24),transparent_42%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(100,1,24,0.86)_0%,rgba(28,28,28,0.58)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_45%,rgba(96,186,177,0.18),transparent_42%)]" />
 
-      <div className="relative mx-auto flex min-h-[78vh] max-w-7xl flex-col justify-end px-5 py-24 md:px-8 md:py-28">
+      <div className="relative mx-auto flex min-h-[78vh] max-w-7xl flex-col justify-end px-5 py-28 md:px-8 md:py-32">
         <Reveal variant="clipUp">
-          <p className="text-xs font-semibold tracking-[0.22em] text-tis-teal uppercase">
+          <p className="text-sm font-semibold tracking-[0.2em] text-tis-teal uppercase">
             {experience.title}
           </p>
           <h2 className="mt-4 max-w-2xl font-display text-4xl font-extrabold tracking-tight md:text-6xl">

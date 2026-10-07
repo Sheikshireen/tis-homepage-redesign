@@ -12,9 +12,13 @@ export default function SectionHeading({
   const mutedClass = tone === "light" ? "text-white/75" : "text-tis-muted";
 
   return (
-    <div className={`flex max-w-3xl flex-col gap-3 ${alignClass} ${toneClass} ${className}`}>
+    <div className={`flex max-w-3xl flex-col gap-4 ${alignClass} ${toneClass} ${className}`}>
       {eyebrow ? (
-        <p className="text-xs font-semibold tracking-[0.22em] text-tis-teal-deep uppercase">
+        <p
+          className={`text-sm font-semibold tracking-[0.2em] uppercase ${
+            tone === "light" ? "text-tis-teal" : "text-tis-teal-deep"
+          }`}
+        >
           {eyebrow}
         </p>
       ) : null}
@@ -24,7 +28,7 @@ export default function SectionHeading({
         </h2>
       ) : null}
       {subtitle ? (
-        <p className={`max-w-2xl text-base leading-relaxed md:text-lg ${mutedClass}`}>
+        <p className={`max-w-xl text-base leading-relaxed md:text-lg ${mutedClass}`}>
           {subtitle}
         </p>
       ) : null}

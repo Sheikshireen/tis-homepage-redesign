@@ -17,14 +17,14 @@ export default function Voices() {
   };
 
   return (
-    <section id="voices" className="bg-white px-5 py-24 md:px-8 md:py-32">
+    <section id="voices" className="bg-white px-5 py-28 md:px-8 md:py-36">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <Reveal>
             <SectionHeading
               eyebrow="Voices"
-              title="From The Parents"
-              subtitle="Real words from Tulas families — swipe to explore."
+              title="From the families who know"
+              subtitle="Honest words from Tulas parents — swipe to listen."
             />
           </Reveal>
           <div className="flex gap-2">
@@ -58,10 +58,12 @@ export default function Voices() {
             data-cursor="interactive"
             data-cursor-label="DRAG"
           >
-            {testimonials.map((item) => (
+            {testimonials.map((item, index) => (
               <figure
                 key={`${item.name}-${item.relation}`}
-                className="w-[min(88vw,440px)] shrink-0 snap-start border-l-2 border-tis-red bg-tis-cream p-6 md:p-8"
+                className={`w-[min(88vw,440px)] shrink-0 snap-start border-l-2 bg-tis-cream p-6 transition duration-300 md:p-8 ${
+                  index === 0 ? "border-tis-red scale-[1.01]" : "border-tis-ink/15"
+                }`}
               >
                 <blockquote className="font-accent text-xl leading-snug text-tis-ink italic md:text-2xl">
                   “{item.quote}”

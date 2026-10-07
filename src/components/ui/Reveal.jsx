@@ -4,12 +4,18 @@ import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion";
 const presets = {
   fadeUp: { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } },
   fade: { hidden: { opacity: 0 }, show: { opacity: 1 } },
+  fadeLeft: { hidden: { opacity: 0, x: -36 }, show: { opacity: 1, x: 0 } },
+  fadeRight: { hidden: { opacity: 0, x: 36 }, show: { opacity: 1, x: 0 } },
   clipUp: {
-    hidden: { opacity: 0, y: 36, clipPath: "inset(12% 0 0 0)" },
+    hidden: { opacity: 0, y: 36, clipPath: "inset(14% 0 0 0)" },
     show: { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" },
   },
+  clipRight: {
+    hidden: { opacity: 0, clipPath: "inset(0 100% 0 0)" },
+    show: { opacity: 1, clipPath: "inset(0 0% 0 0)" },
+  },
   scaleIn: {
-    hidden: { opacity: 0, scale: 1.04 },
+    hidden: { opacity: 0, scale: 1.06 },
     show: { opacity: 1, scale: 1 },
   },
 };
@@ -38,7 +44,7 @@ export default function Reveal({
       whileInView="show"
       viewport={{ once, amount }}
       variants={preset}
-      transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
     >
       {children}
     </Component>

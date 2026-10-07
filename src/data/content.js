@@ -1,3 +1,15 @@
+import campusAerial from "../assets/campus-aerial.webp";
+import aboutCampus from "../assets/about-campus.webp";
+import experienceImage from "../assets/experience.webp";
+import artsDance from "../assets/arts-dance.webp";
+import lifeLeadership from "../assets/life-leadership.webp";
+import visitorSakshi from "../assets/visitor-sakshi.webp";
+import visitorVishesh from "../assets/visitor-vishesh.webp";
+import visitorPrakashi from "../assets/visitor-prakashi.webp";
+import visitorAbhishek from "../assets/visitor-abhishek.webp";
+import visitorAditi from "../assets/visitor-aditi.webp";
+import visitorLaxmi from "../assets/visitor-laxmi.webp";
+
 const MEDIA = "https://tis.edu.in/_next/static/media";
 
 export const brand = {
@@ -78,8 +90,8 @@ export const ctas = {
 export const hero = {
   eyebrow: "CBSE Co-ed Boarding & Day School · Dehradun",
   supporting:
-    "Academic excellence, holistic development, and a campus built to prepare students as global leaders.",
-  image: `${MEDIA}/schoolTopView.6e263e02.webp`,
+    "Academic excellence. Holistic growth. A campus built for students ready to lead.",
+  image: campusAerial,
   imageAlt: "Aerial view of Tulas International School campus in Dehradun",
 };
 
@@ -93,13 +105,14 @@ export const about = {
     "CBSE curriculum focused on academic excellence and holistic development",
     "A community that encourages leadership, innovation, and lifelong learning",
   ],
-  image: `${MEDIA}/Image%202.0c5295c9.webp`,
+  image: aboutCampus,
   imageAlt: "Students on the Tulas International School campus",
 };
 
 export const whyTulas = {
   id: "why",
   title: "Why Tulas",
+  headline: "A school that chooses you back",
   items: [
     {
       quote: "We feel supported in what we do and nudged further to do more",
@@ -118,50 +131,52 @@ export const whyTulas = {
 
 export const campusStats = {
   id: "campus",
-  title: "Campus at a Glance",
+  title: "Campus",
+  headline: "Twenty-two acres to grow into",
   subtitle: "A pollution-free campus designed for learning, sport, and care.",
+  featuredImage: campusAerial,
+  featuredImageAlt: "Aerial view of the Tulas International School campus",
   items: [
     {
       value: 22,
       suffix: "",
       label: "Acre pollution-free campus",
       image: `${MEDIA}/campus.e67b1a0a.png`,
-      imageAlt: "Tulas campus grounds",
+      imageAlt: "Campus icon",
     },
     {
       value: 16,
       suffix: "+",
       label: "Olympic sports",
       image: `${MEDIA}/sports.e695b690.png`,
-      imageAlt: "Sports facilities at Tulas",
+      imageAlt: "Sports icon",
     },
     {
       value: 24,
       suffix: "×7",
       label: "Medical assistance",
       image: `${MEDIA}/medical.e87071fe.png`,
-      imageAlt: "Medical care support at Tulas",
+      imageAlt: "Medical care icon",
     },
     {
       value: 6,
       suffix: ":1",
       label: "Student–teacher ratio",
       image: `${MEDIA}/ratio.6ca07c6a.png`,
-      imageAlt: "Students with teachers at Tulas",
+      imageAlt: "Student–teacher ratio icon",
     },
     {
       value: 12,
       suffix: "+",
       label: "Collaborations",
       image: `${MEDIA}/ranking.157c5a68.png`,
-      imageAlt: "Tulas collaborations and recognition",
+      imageAlt: "Collaborations icon",
     },
   ],
 };
 
 /**
  * Life at Tulas — categories use only existing verified copy/images from the site.
- * Kept minimal; no invented descriptions.
  */
 export const lifeAtTulas = {
   id: "life",
@@ -171,31 +186,31 @@ export const lifeAtTulas = {
     {
       label: "Academics",
       line: "CBSE curriculum focused on academic excellence and holistic development",
-      image: `${MEDIA}/madeForFuture.e96fe7c1.png`,
+      image: aboutCampus,
       imageAlt: "Academic life at Tulas International School",
     },
     {
       label: "Boarding",
       line: "One of India’s top boarding and day schools in Dehradun",
-      image: `${MEDIA}/campus.e67b1a0a.png`,
+      image: campusAerial,
       imageAlt: "Boarding campus at Tulas",
     },
     {
       label: "Sports",
       line: "16+ sports curated to bring joy and discipline to your life.",
-      image: `${MEDIA}/sports.e695b690.png`,
+      image: experienceImage,
       imageAlt: "Sports at Tulas",
     },
     {
       label: "Arts & Culture",
       line: "Bringing out the best in every student—whether it’s academics, music, art, or drama.",
-      image: `${MEDIA}/dance.88843edb.webp`,
+      image: artsDance,
       imageAlt: "Arts and culture at Tulas",
     },
     {
       label: "Leadership",
       line: "A community that encourages leadership, innovation, and lifelong learning",
-      image: `${MEDIA}/Image%203.21dc9e69.webp`,
+      image: lifeLeadership,
       imageAlt: "Leadership and community at Tulas",
     },
   ],
@@ -233,6 +248,7 @@ export const sports = {
 export const recognition = {
   id: "recognition",
   title: "Recognition",
+  headline: "Recognised among India’s co-educational boarding schools",
   subtitle: "We believe in celebrating the hard work and perseverance of the best!",
   rankings: [
     {
@@ -261,32 +277,32 @@ export const visitors = {
     {
       name: "Sakshi Malik",
       note: "First Indian wrestler to win a medal at the Rio 2016 Olympics; Padma Shri Awardee 2017",
-      image: `${MEDIA}/SakshiMalik.91174bf4.webp`,
+      image: visitorSakshi,
     },
     {
       name: "Vishesh Bhriguvanshi",
       note: "Indian Basketball Team Captain & major FIBA Asia Championship player",
-      image: `${MEDIA}/VisheshBhriguvanshi.52af8bfd.webp`,
+      image: visitorVishesh,
     },
     {
       name: "Prakashi Tomar & Late Ms Chandro Tomar",
       note: "Known as Shooter Dadi; 30 National Championship winners",
-      image: `${MEDIA}/PrakashiTomar.339dbb95.webp`,
+      image: visitorPrakashi,
     },
     {
       name: "Abhishek Verma",
       note: "Arjuna Awardee; Asian Games Gold Medalist in Archery 2013",
-      image: `${MEDIA}/AbhishekVerma.18f9d349.webp`,
+      image: visitorAbhishek,
     },
     {
       name: "Aditi Gopichand Swami",
       note: "Arjuna Awardee; World Champion in Archery 2024",
-      image: `${MEDIA}/AditiGopichandSwami.b7afa246.webp`,
+      image: visitorAditi,
     },
     {
       name: "Laxmi Agarwal",
       note: "Founder and President of The Laxmi Foundation; International Women Empowerment Award recipient",
-      image: `${MEDIA}/LakshmiAgarwal.7405df5d.webp`,
+      image: visitorLaxmi,
     },
   ],
 };
@@ -333,16 +349,16 @@ export const testimonials = [
 export const experience = {
   id: "experience",
   title: "Experience TIS",
-  headline: "Dive into our virtual tour",
-  body: "Explore the campus, spaces, and spirit of Tulas from wherever you are—then take the next step with our brochure.",
-  image: `${MEDIA}/polo.973ddbae.webp`,
+  headline: "See Tulas before you arrive",
+  body: "Walk the campus virtually—then take the next step with our brochure.",
+  image: experienceImage,
   imageAlt: "Students experiencing campus life at Tulas International School",
 };
 
 export const enquire = {
   id: "enquire",
-  title: "Enquire / Admissions",
-  headline: "Ready to do it?",
+  title: "Admissions",
+  headline: "Ready when you are",
   body: "Share a few details and our admissions team will connect with you. Classes IV to XII.",
   classes: [
     "Class IV",

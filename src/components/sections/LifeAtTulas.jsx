@@ -10,15 +10,18 @@ export default function LifeAtTulas() {
   const item = lifeAtTulas.items[active];
 
   return (
-    <section id={lifeAtTulas.id} className="bg-tis-ink px-5 py-24 text-white md:px-8 md:py-32">
+    <section id={lifeAtTulas.id} className="bg-tis-ink px-5 py-28 text-white md:px-8 md:py-36">
       <div className="mx-auto max-w-7xl">
         <Reveal>
-          <p className="text-xs font-semibold tracking-[0.22em] text-tis-teal uppercase">
+          <p className="text-sm font-semibold tracking-[0.2em] text-tis-teal uppercase">
             {lifeAtTulas.title}
           </p>
-          <h2 className="mt-4 max-w-2xl font-display text-3xl font-bold tracking-tight md:text-5xl">
-            {lifeAtTulas.subtitle}
+          <h2 className="mt-4 max-w-xl font-display text-3xl font-bold tracking-tight md:text-5xl">
+            One campus. Many ways to belong.
           </h2>
+          <p className="mt-4 max-w-2xl text-sm tracking-[0.12em] text-white/55 uppercase md:text-base md:tracking-[0.16em]">
+            {lifeAtTulas.subtitle}
+          </p>
         </Reveal>
 
         <div className="mt-10 flex gap-2 overflow-x-auto pb-2 md:mt-12 md:flex-wrap md:overflow-visible">
